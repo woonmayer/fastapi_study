@@ -11,4 +11,5 @@ poetry env use /opt/homebrew/opt/python@3.10/bin/python3
 poetry install
 poetry shell
 python main.py
+python homework.py
 ```
