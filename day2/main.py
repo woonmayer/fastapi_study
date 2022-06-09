@@ -19,8 +19,10 @@ class Item(BaseModel):
     price: float = Field(gt=0, description="expensive", extra="extra")
     is_offer: bool | None = None
     tags: set[str] = set()
-    image: Image | None = None
-    # image: Image = None
+    # image: Image | None = None
+    # TODO discuss, 아래로 해도 None이 가능
+    # https://fastapi.tiangolo.com/ko/tutorial/query-params-str-validations/#required-with-none
+    image: Image = None
 
     # name: str = Field(example="Foo")
     class Config:
@@ -44,11 +46,20 @@ def update_item_without_model(name: str = Body(), price: float = Body(), is_offe
     return {'name': name, 'price': price, 'is_offer': is_offer}
 
 
+# TODO discuss
+# Required with Ellipsis (...)
+def do_something():
+    ...
+
+
 # Query Params and String Validation
 @app.get("/items/")
-def read_items(q: str | None = Query(default=None, max_length=5, regex="^\d{0,5}$", alias='item-query')):
+def read_items(q: str | None = Query(default=..., max_length=5, regex="^\d{0,5}$", alias='item-query')):
     return q
 
+# TODO discuss
+# def test(*, a, b=None, c):
+#     pass
 
 # Path Params and Numeric Validation
 @app.get("/items/{item_id}")
