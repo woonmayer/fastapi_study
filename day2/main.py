@@ -27,4 +27,4 @@ def read_items(q: str | None = Query(default=None, max_length=5, regex="^\d{0,5}
 
 
 if __name__ == '__main__':
-    uvicorn.run('main:app', reload=True)
+    uvicorn.run('main:app', host='0.0.0.0', reload=True)

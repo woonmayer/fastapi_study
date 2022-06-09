@@ -9,7 +9,8 @@
 ```bash
 poetry env use /opt/homebrew/opt/python@3.10/bin/python3
 poetry install
-poetry shell
-python main.py
-python homework.py
+poetry build
+
+docker build . -t day2
+docker run -p 8000:8000 day2
 ```

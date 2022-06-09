@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "fastapi_tutorial"
+name = "main"
 version = "0.1.0"
 description = ""
 authors = ["LeeSeungWoon <s3wn.code@gmail.com>"]
