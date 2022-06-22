@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Response
 from fastapi.param_functions import Depends, Path, Query
 from fastapi.security import OAuth2PasswordBearer
+from pydantic.main import BaseModel
 
 app =  FastAPI()
 
@@ -21,3 +22,17 @@ def echo_path_param(path_param: str = Path()):
 @app.get('/query_param')
 def echo_query_param(q = Query()):
     return {'q': q}
+
+
+class Product(BaseModel):
+    name: str
+    code: str
+
+
+class Option(BaseModel):
+    name: str
+
+@app.post('/product')
+def create_product(product: Product, option: Option | None = None):
+    return product, option
+
